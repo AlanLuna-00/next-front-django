@@ -24,7 +24,6 @@ const Form = () => {
     <div>
       <h1>Crear usuario</h1>
       <UserForm initialValues={values} onSubmit={handleSubmit} />{" "}
-      {/* Pasar 'values' en lugar de 'initialValues' */}
     </div>
   );
 };

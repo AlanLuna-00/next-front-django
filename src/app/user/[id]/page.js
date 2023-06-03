@@ -11,14 +11,14 @@ export default function User({ params }) {
   const { id } = params;
   const { user, loading } = useGetUser(id);
   const { updateUser } = useUpdateUser(id);
-  const [editMode, setEditMode] = useState(false); // Estado para controlar la visibilidad del formulario de edición
+  const [editMode, setEditMode] = useState(false);
   const { deleteUser, loading: deleting } = useDeleteUser(id);
   const router = useRouter();
 
   const handleDelete = async () => {
     try {
       await deleteUser(id);
-      router.push("/"); // Redirigir a la página de inicio después de eliminar el usuario
+      router.push("/");
     } catch (error) {
       console.log("Error al eliminar el usuario", error);
     }
@@ -26,10 +26,9 @@ export default function User({ params }) {
 
   const handleUpdate = async (values) => {
     try {
-      const resolvedValues = await values(); // Esperar a que se resuelva la promesa y obtener los valores
+      const resolvedValues = await values();
       await updateUser(resolvedValues);
-      // Aquí puedes manejar las acciones posteriores a la actualización, como mostrar un mensaje de éxito, etc.
-      setEditMode(false); // Desactivar el modo de edición después de la actualización exitosa
+      setEditMode(false);
     } catch (error) {
       console.log("Error al actualizar el usuario", error);
     }
